@@ -2339,10 +2339,10 @@ function pixel_satd_4x4_rvv
     vmv1r.v     v28, v2
     vslideup.vi v28, v3, 4
     vmv1r.v     v1, v3
-    vsetivli    zero, 4, e16, m1, ta, ma
+    vsetivli    zero, 4, e16, m1, tu, ma
     vslidedown.vi v1, v2, 4
 
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_AB   v2, v3, v28, v1
 
     // vtrn_8h     v28, v1, v2, v3, v8, v9, v10
@@ -2357,7 +2357,7 @@ function pixel_satd_4x4_rvv
     SUMSUB_AB   v2, v3, v28, v1   
     
     // vtrn_4s     v28, v1, v2, v3, v8, v9, v10, t5
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmnot.m v0,v0
     vmv.v.v       v28, v2
     vslideup.vi   v28, v3, 1, v0.t
@@ -2431,7 +2431,7 @@ function pixel_satd_4x8_rvv
     vwsubu.vv   v22, v4, v5
     vwsubu.vv   v23, v6, v7
 
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_AB   v16, v17, v20, v21
     SUMSUB_AB   v18, v19, v22, v23
 
@@ -2458,7 +2458,7 @@ function pixel_satd_4x8_rvv
     // vtrn_4s     v28, v1, v16, v18, v8, v9, v10, t5
     // vtrn_4s     v2, v3, v17, v19, v8, v9, v10, t5
     
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v1, v18
     vmv.v.v       v3, v19
     vslidedown.vi   v1, v16, 1, v0.t
@@ -2510,7 +2510,7 @@ function pixel_satd_8x4_rvv
     vwsubu.vv   v22, v4, v5
     vwsubu.vv   v23, v6, v7
 
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_AB   v16, v17, v20, v21
     SUMSUB_AB   v18, v19, v22, v23
 
@@ -2531,7 +2531,7 @@ function pixel_satd_8x4_rvv
     SUMSUB_AB   v16, v17, v28, v5
     SUMSUB_AB   v18, v19, v2, v7
     
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v1, v18
     vmv.v.v       v3, v19
     vslidedown.vi   v1, v16, 1, v0.t // trn2
@@ -2782,7 +2782,7 @@ endfunc
 
 // one vertical hadamard pass and two horizontal
 function satd_8x4v_8x8h_rvv, export=0
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_AB   v16, v18, v28, v2
     SUMSUB_AB   v17, v19, v1, v3
     HADAMARD4_V v20, v21, v22, v23, v28, v1, v2, v3
@@ -2818,7 +2818,7 @@ function satd_8x4v_8x8h_rvv, export=0
     //vtrn_4s     v4, v6, v20, v22, v8, v9, v10, t5
     //vtrn_4s     v5, v7, v21, v23, v8, v9, v10, t5
 
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v2, v18
     vmv.v.v       v3, v19
     vmv.v.v       v6, v22
@@ -2954,7 +2954,7 @@ function satd_16x4_rvv, export=0
     vwsubu.vv   v21, v4, v5
     vwsubu.vv   v23, v6, v7
     
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_AB   v28, v1, v16, v18
     SUMSUB_AB   v2, v3, v20, v22
 
@@ -2990,7 +2990,7 @@ function satd_16x4_rvv, export=0
     //vtrn_4s     v4, v6, v20, v22, v8, v9, v10, t5
     //vtrn_4s     v5, v7, v21, v23, v8, v9, v10, t5
 
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v2, v18
     vmv.v.v       v3, v19
     vmv.v.v       v6, v22
@@ -3210,6 +3210,7 @@ function pixel_sa8d_\satd\()8x8_rvv, export=0
     // vtrn_8h     v6, v7, v22, v23, v8, v9, v10
 
     vmv.v.v       v28, v16
+    vsetivli    zero, 8, e16, m1, ta, mu
     vslideup.vi   v28, v17, 1, v0.t // trn1
     vmv.v.v       v2, v18
     vslideup.vi   v2, v19, 1, v0.t  // trn1
@@ -3233,7 +3234,7 @@ function pixel_sa8d_\satd\()8x8_rvv, export=0
     // vtrn_4s     v24, v26, v28, v2, v8, v9, v10, t5
     // vtrn_4s     v25, v27, v1, v3, v8, v9, v10, t5
 
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v6, v26
     vmv.v.v       v7, v27
     vmv.v.v       v26, v2
@@ -3281,6 +3282,7 @@ function pixel_sa8d_\satd\()8x8_rvv, export=0
     vmv.v.v       v4, v28
     vmv.v.v       v22, v18
     vmv.v.v       v6, v2
+    vsetivli    zero, 8, e16, m1, ta, mu
     vslideup.vi   v20, v17, 1, v0.t // trn1
     vslideup.vi   v4, v1, 1, v0.t  // trn1
     vslideup.vi   v22, v19, 1, v0.t // trn1
@@ -3301,7 +3303,7 @@ function pixel_sa8d_\satd\()8x8_rvv, export=0
 //    vtrn_4s     v16, v18, v24, v4, v8, v9, v10, t5
 //    vtrn_4s     v17, v19, v25, v5, v8, v9, v10, t5
 
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v22, v28
     vslidedown.vi v22, v14, 1, v0.t // trn2
     vmv.v.v       v23, v1
@@ -3441,7 +3443,7 @@ function hadamard_ac_8x8_rvv, export=0
     SUMSUBL_AB  v4, v5, v20, v21
     SUMSUBL_AB  v6, v7, v22, v23
 
-    vsetivli    zero, 8, e16, m1, ta, ma
+    vsetivli    zero, 8, e16, m1, ta, mu
     SUMSUB_ABCD v16, v18, v17, v19, v28, v2, v1, v3
     SUMSUB_ABCD v20, v22, v21, v23, v4, v6, v5, v7
 
@@ -3480,7 +3482,7 @@ function hadamard_ac_8x8_rvv, export=0
     //vtrn_4s     v4, v6, v20, v22, v8, v9, v10, t5
     //vtrn_4s     v5, v7, v21, v23, v8, v9, v10, t5
 
-    vsetivli        zero, 4, e32, m1, ta, ma
+    vsetivli        zero, 4, e32, m1, ta, mu
     vmv.v.v       v2, v18
     vslidedown.vi   v2, v16, 1, v0.t // trn2
     vmv.v.v       v3, v19
