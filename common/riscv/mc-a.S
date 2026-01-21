@@ -85,7 +85,7 @@ function pixel_avg_weight_w4_rvv, export=0
     vse8.v    v6, (a0)
     add       a0, a0, a1
 
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -150,7 +150,7 @@ function pixel_avg_weight_w8_rvv, export=0
     vse8.v    v4, (a0)
     add       a0, a0, a1
 
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -192,7 +192,7 @@ function pixel_avg_weight_w16_rvv, export=0
     vse8.v    v6, (a0)
     add       a0, a0, a1
 
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -216,7 +216,7 @@ function pixel_avg_w4_rvv, export=0
     add       a0, a0, a1
     vse8.v    v3, (a0)
     add       a0, a0, a1
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -259,7 +259,7 @@ function pixel_avg_w8_rvv, export=0
     add       a0, a0, a1
 
 
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -302,7 +302,7 @@ function pixel_avg_w16_rvv, export=0
     add       a0, a0, a1
 
 
-    bnez      t1, 1b
+    bgt       t1, zero, 1b
     ret
 endfunc
 
@@ -440,7 +440,7 @@ function mc_weight_w4_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -483,7 +483,7 @@ function mc_weight_w8_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -526,7 +526,7 @@ function mc_weight_w16_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -564,7 +564,7 @@ function mc_weight_w20_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -602,7 +602,7 @@ function mc_weight_w4_nodenom_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -640,7 +640,7 @@ function mc_weight_w8_nodenom_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -678,7 +678,7 @@ function mc_weight_w16_nodenom_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -712,7 +712,7 @@ function mc_weight_w20_nodenom_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -735,7 +735,7 @@ function mc_weight_w4_\name\()_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -757,7 +757,7 @@ function mc_weight_w8_\name\()_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -779,7 +779,7 @@ function mc_weight_w16_\name\()_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
@@ -802,7 +802,7 @@ function mc_weight_w20_\name\()_rvv, export=1
     add       a0, a0, a1
     vse8.v    v2, (a0)
     add       a0, a0, a1
-    bnez      a5, 1b
+    bgt       a5, zero, 1b
     ret
 endfunc
 
